@@ -221,20 +221,48 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Success State Transition
             if (isValid) {
-                // Fade out form and fade in success
-                contactForm.style.transition = 'opacity 0.4s ease';
-                contactForm.style.opacity = '0';
-                
-                setTimeout(() => {
-                    contactForm.style.display = 'none';
-                    formSuccess.style.display = 'block';
-                    formSuccess.style.opacity = '0';
-                    formSuccess.style.transition = 'opacity 0.4s ease';
+                // Change button text to indicate loading
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = "Sending...";
+                submitBtn.disabled = true;
+
+                // Submit form via fetch to Formsubmit
+                fetch("https://formsubmit.co/ajax/anaclaragoncalveslopes@gmail.com", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: nameInput.value,
+                        email: emailInput.value,
+                        message: messageInput.value
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Fade out form and fade in success
+                    contactForm.style.transition = 'opacity 0.4s ease';
+                    contactForm.style.opacity = '0';
                     
-                    // Force redraw for transition
-                    formSuccess.getBoundingClientRect();
-                    formSuccess.style.opacity = '1';
-                }, 400);
+                    setTimeout(() => {
+                        contactForm.style.display = 'none';
+                        formSuccess.style.display = 'block';
+                        formSuccess.style.opacity = '0';
+                        formSuccess.style.transition = 'opacity 0.4s ease';
+                        
+                        // Force redraw for transition
+                        formSuccess.getBoundingClientRect();
+                        formSuccess.style.opacity = '1';
+                    }, 400);
+                })
+                .catch(error => {
+                    console.error("Error submitting form:", error);
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    alert("There was an error sending your message. Please try again later.");
+                });
             }
         });
     }
