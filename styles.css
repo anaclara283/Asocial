@@ -7,19 +7,19 @@
     /* Color System */
     --color-white: #FFFFFF;
     --color-black: #000000;
-    --color-merlot: #5C1A2D;
+    --color-merlot: #720606;
     
     /* RGB values for transparency overlay states */
     --color-black-rgb: 0, 0, 0;
     --color-white-rgb: 255, 255, 255;
-    --color-merlot-rgb: 92, 26, 45;
+    --color-merlot-rgb: 114, 6, 6;
 
     /* Neutrals */
     --color-bg-light: #FAFAFA;
     --color-gray-dark: #1A1A1A;
     --color-gray-muted: #666666;
     --color-border-light: rgba(0, 0, 0, 0.08);
-    --color-border-merlot: rgba(92, 26, 45, 0.15);
+    --color-border-merlot: rgba(114, 6, 6, 0.15);
 
     /* Typography */
     --font-heading: 'Playfair Display', serif;
@@ -458,7 +458,7 @@ section {
     top: -100px;
     right: -100px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(92, 26, 45, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
+    background: radial-gradient(circle, rgba(114, 6, 6, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
     pointer-events: none;
     z-index: 0;
     filter: blur(40px);
@@ -640,7 +640,7 @@ section {
 .service-card:focus {
     transform: translateY(-8px);
     border-color: var(--color-merlot);
-    box-shadow: 0 15px 40px rgba(92, 26, 45, 0.04);
+    box-shadow: 0 15px 40px rgba(114, 6, 6, 0.04);
     outline: none;
 }
 
@@ -863,7 +863,7 @@ section {
 }
 
 .accent-text-light {
-    color: #A95D71; /* Lighter tint of Merlot for high-contrast visibility on dark backgrounds */
+    color: #E63939; /* Lighter tint of Merlot for high-contrast visibility on dark backgrounds */
 }
 
 .philosophy-text {
