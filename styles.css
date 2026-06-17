@@ -851,39 +851,107 @@ section {
 /* --- 3.5 Concept to Code Section --- */
 .concept-code-section {
     background-color: var(--color-white);
+    padding: var(--space-xl) 0;
     border-bottom: 1px solid var(--color-border-light);
     border-top: 1px solid var(--color-border-light);
-    padding: var(--space-xl) 0;
 }
-.concept-code-container {
-    max-width: 800px;
+
+.concept-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    align-items: center;
 }
+
+@media (min-width: 992px) {
+    .concept-grid {
+        grid-template-columns: 1.2fr 1fr;
+        gap: 100px;
+    }
+}
+
+.concept-intro .section-title {
+    margin-bottom: var(--space-md);
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+}
+
+.concept-text-wrap {
+    max-width: 480px;
+}
+
 .concept-text {
     font-size: var(--fs-body-large);
-    font-weight: 400;
     line-height: 1.6;
     color: var(--color-gray-dark);
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--space-sm);
 }
-.concept-timeline {
+
+.concept-interactive-timeline {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    border-top: 1px solid var(--color-border-light);
+}
+
+.ct-item {
+    display: flex;
     align-items: center;
-    justify-content: center;
-    gap: var(--space-md);
-    margin-top: var(--space-lg);
+    padding: var(--space-md) var(--space-sm);
+    border-bottom: 1px solid var(--color-border-light);
+    cursor: pointer;
+    transition: all var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.ct-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-bg-light);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition-smooth);
+    z-index: 0;
+}
+
+.ct-item:hover::before,
+.ct-item:focus::before {
+    transform: scaleX(1);
+}
+
+.ct-num {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-merlot);
+    width: 60px;
+    position: relative;
+    z-index: 1;
+    transition: transform var(--transition-smooth);
+}
+
+.ct-name {
     font-family: var(--font-heading);
     font-size: var(--fs-h3);
-    font-weight: 600;
-    color: var(--color-black);
-}
-.ct-arrow {
-    color: var(--color-merlot);
     font-weight: 400;
+    color: var(--color-black);
+    position: relative;
+    z-index: 1;
+    transition: transform var(--transition-smooth), color var(--transition-smooth);
 }
-.text-center {
-    text-align: center;
-    margin: 0 auto;
+
+.ct-item:hover .ct-num,
+.ct-item:focus .ct-num {
+    transform: translateX(10px);
+}
+
+.ct-item:hover .ct-name,
+.ct-item:focus .ct-name {
+    transform: translateX(10px);
+    color: var(--color-merlot);
 }
 
 /* --- 5. Philosophy Section --- */
